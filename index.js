@@ -30,16 +30,20 @@ function getClassByRate(vote) {
 function showMovies(data) {
   const moviesEl = document.querySelector(".movies");
 
-  // Очищаем предыдущие фильмы
   document.querySelector(".movies").innerHTML = "";
 
   data.films.forEach((movie) => {
+    if (moviesEl === undefined||moviesEl===null) {
+      delete moviesEl;
+    } if (moviesEl === undefined||moviesEl===null) {
+      delete moviesEl
+    }
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
     movieEl.innerHTML = `
         <div class="movie__cover-inner">
         <img
-          src="${movie.posterUrlPreview}"
+          src="${movie.posterUrlPreview}!=='' "
           class="movie__cover"
           alt="${movie.nameRu}"
         />
@@ -48,16 +52,16 @@ function showMovies(data) {
       <div class="movie__info">
         <div class="movie__title">${movie.nameRu}</div>
         <div class="movie__category">${movie.genres.map(
-          (genre) => ` ${genre.genre}`
-        )}</div>
-        ${
-          movie.rating &&
-          `
+      (genre) => ` ${genre.genre}`
+    )}</div>
+        ${movie.rating &&
+      `
+          
         <div class="movie__average movie__average--${getClassByRate(
-          movie.rating
-        )}">${movie.rating}</div>
+        movie.rating
+      )}">${movie.rating}</div>
         `
-        }
+      }
       </div>
         `;
     moviesEl.appendChild(movieEl);
@@ -76,4 +80,6 @@ form.addEventListener("submit", (e) => {
 
     search.value = "";
   }
+
 });
+
