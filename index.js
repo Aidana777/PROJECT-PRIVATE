@@ -33,10 +33,10 @@ function showMovies(data) {
   document.querySelector(".movies").innerHTML = "";
 
   data.films.forEach((movie) => {
-    if (moviesEl === undefined||moviesEl===null) {
-      delete moviesEl;
-    } if (moviesEl === undefined||moviesEl===null) {
-      delete moviesEl
+    if (moviesEl === undefined) {
+      delete movieEl;
+    } if (movie.nameRu === undefined) {
+      delete moviEl
     }
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
